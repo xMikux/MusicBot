@@ -46,7 +46,7 @@ public class Prompt
     public Prompt(String title, String noguiMessage, boolean nogui, boolean noprompt)
     {
         this.title = title;
-        this.noguiMessage = noguiMessage == null ? "Switching to nogui mode. You can manually start in nogui mode by including the -Dnogui=true flag." : noguiMessage;
+        this.noguiMessage = noguiMessage == null ? "切換至無介面模式. 你可以添加標誌 -Dnogui=true 至你的啟動參數內來啟動無介面模式." : noguiMessage;
         this.nogui = nogui;
         this.noprompt = noprompt;
     }

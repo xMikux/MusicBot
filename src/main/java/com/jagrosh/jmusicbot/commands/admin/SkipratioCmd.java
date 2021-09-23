@@ -29,7 +29,7 @@ public class SkipratioCmd extends AdminCommand
     public SkipratioCmd(Bot bot)
     {
         this.name = "setskip";
-        this.help = "sets a server-specific skip percentage";
+        this.help = "設置伺服器的跳過百分比";
         this.arguments = "<0 - 100>";
         this.aliases = bot.getConfig().getAliases(this.name);
     }
@@ -42,12 +42,12 @@ public class SkipratioCmd extends AdminCommand
             int val = Integer.parseInt(event.getArgs().endsWith("%") ? event.getArgs().substring(0,event.getArgs().length()-1) : event.getArgs());
             if( val < 0 || val > 100)
             {
-                event.replyError("The provided value must be between 0 and 100!");
+                event.replyError("提供的值必須在0至100之間!");
                 return;
             }
             Settings s = event.getClient().getSettingsFor(event.getGuild());
             s.setSkipRatio(val / 100.0);
-            event.replySuccess("Skip percentage has been set to `" + val + "%` of listeners on *" + event.getGuild().getName() + "*");
+            event.replySuccess("跳過百分比已設置為 `" + val + "%` 在 *" + event.getGuild().getName() + "*");
         }
         catch(NumberFormatException ex)
         {

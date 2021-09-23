@@ -14,25 +14,25 @@
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/gdu6nyte5psj6xfk/branch/master?svg=true)](https://ci.appveyor.com/project/jagrosh/musicbot/branch/master)
 [![CodeFactor](https://www.codefactor.io/repository/github/jagrosh/musicbot/badge)](https://www.codefactor.io/repository/github/jagrosh/musicbot)
 
-A cross-platform Discord music bot with a clean interface, and that is easy to set up and run yourself!
+一個具有乾淨頁面的跨平台Discord音樂機器人, 簡單設定和運行!
 
 [![Setup](http://i.imgur.com/VvXYp5j.png)](https://jmusicbot.com/setup)
 
-## Features
-  * Easy to run (just make sure Java is installed, and run!)
-  * Fast loading of songs
-  * No external keys needed (besides a Discord Bot token)
-  * Smooth playback
-  * Server-specific setup for the "DJ" role that can moderate the music
-  * Clean and beautiful menus
-  * Supports many sites, including Youtube, Soundcloud, and more
-  * Supports many online radio/streams
-  * Supports local files
-  * Playlist support (both web/youtube, and local)
+## 特徵
+  * 簡單運行 (只需要確保有安裝Java, 然後運行!)
+  * 快速載入歌曲
+  * 不需要外額外的密鑰 (除了Discord機器人token)
+  * 流暢的播放
+  * 伺服器特定設置的可以管理音樂的"DJ"身分組
+  * 乾淨和漂亮的清單
+  * 支持許多網站, 包括 Youtube, Soundcloud 和更多
+  * 支持許多線上 廣播/直播
+  * 支持本地檔案
+  * 播放清單支持 (網頁/youtube 與本地)
 
-## Supported sources and formats
-JMusicBot supports all sources and formats supported by [lavaplayer](https://github.com/sedmelluq/lavaplayer#supported-formats):
-### Sources
+## 支持的來源和格式
+JMusicBot 支持 [lavaplayer](https://github.com/sedmelluq/lavaplayer#supported-formats) 所有的來源和格式:
+### 來源
   * YouTube
   * SoundCloud
   * Bandcamp
@@ -40,21 +40,21 @@ JMusicBot supports all sources and formats supported by [lavaplayer](https://git
   * Twitch streams
   * Local files
   * HTTP URLs
-### Formats
+### 格式
   * MP3
   * FLAC
   * WAV
-  * Matroska/WebM (AAC, Opus or Vorbis codecs)
+  * Matroska/WebM (AAC, Opus 或 Vorbis codecs)
   * MP4/M4A (AAC codec)
-  * OGG streams (Opus, Vorbis and FLAC codecs)
+  * OGG streams (Opus, Vorbis 和 FLAC codecs)
   * AAC streams
-  * Stream playlists (M3U and PLS)
+  * Stream playlists (M3U 和 PLS)
 
-## Example
+## 範例
 ![Loading Example...](https://i.imgur.com/kVtTKvS.gif)
 
-## Setup
-Please see the [Setup Page](https://jmusicbot.com/setup) to run this bot yourself!
+## 設置
+請查看 [設置頁面](https://jmusicbot.com/setup) 來自己運行此機器人!
 
 ## Questions/Suggestions/Bug Reports
 **Please read the [Issues List](https://github.com/jagrosh/MusicBot/issues) before suggesting a feature**. If you have a question, need troubleshooting help, or want to brainstorm a new feature, please start a [Discussion](https://github.com/jagrosh/MusicBot/discussions). If you'd like to suggest a feature or report a reproducible bug, please open an [Issue](https://github.com/jagrosh/MusicBot/issues) on this repository. If you like this bot, be sure to add a star to the libraries that make this possible: [**JDA**](https://github.com/DV8FromTheWorld/JDA) and [**lavaplayer**](https://github.com/sedmelluq/lavaplayer)!

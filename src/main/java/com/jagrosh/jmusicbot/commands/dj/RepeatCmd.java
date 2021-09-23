@@ -30,7 +30,7 @@ public class RepeatCmd extends DJCommand
     {
         super(bot);
         this.name = "repeat";
-        this.help = "re-adds music to the queue when finished";
+        this.help = "播放完音樂後將目前排序中的音樂重新添加回排序";
         this.arguments = "[on|off]";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.guildOnly = true;
@@ -56,11 +56,11 @@ public class RepeatCmd extends DJCommand
         }
         else
         {
-            event.replyError("Valid options are `on` or `off` (or leave empty to toggle)");
+            event.replyError("有效選項為 `on` 或 `off` (或留空白來切換)");
             return;
         }
         settings.setRepeatMode(value);
-        event.replySuccess("Repeat mode is now `"+(value ? "ON" : "OFF")+"`");
+        event.replySuccess("重複模式現已 `"+(value ? "ON" : "OFF")+"`");
     }
 
     @Override

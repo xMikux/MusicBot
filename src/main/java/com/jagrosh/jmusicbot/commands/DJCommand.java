@@ -30,7 +30,7 @@ public abstract class DJCommand extends MusicCommand
     public DJCommand(Bot bot)
     {
         super(bot);
-        this.category = new Category("DJ", event -> checkDJPermission(event));
+        this.category = new Category("DJ指令", event -> checkDJPermission(event));
     }
     
     public static boolean checkDJPermission(CommandEvent event)

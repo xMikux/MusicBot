@@ -37,7 +37,7 @@ public class SettingsCmd extends Command
     public SettingsCmd(Bot bot)
     {
         this.name = "settings";
-        this.help = "shows the bots settings";
+        this.help = "顯示機器人設定";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.guildOnly = true;
     }
@@ -55,16 +55,16 @@ public class SettingsCmd extends Command
         Role role = s.getRole(event.getGuild());
         EmbedBuilder ebuilder = new EmbedBuilder()
                 .setColor(event.getSelfMember().getColor())
-                .setDescription("Text Channel: " + (tchan == null ? "Any" : "**#" + tchan.getName() + "**")
-                        + "\nVoice Channel: " + (vchan == null ? "Any" : "**" + vchan.getName() + "**")
-                        + "\nDJ Role: " + (role == null ? "None" : "**" + role.getName() + "**")
-                        + "\nCustom Prefix: " + (s.getPrefix() == null ? "None" : "`" + s.getPrefix() + "`")
-                        + "\nRepeat Mode: **" + (s.getRepeatMode() ? "On" : "Off") + "**"
-                        + "\nDefault Playlist: " + (s.getDefaultPlaylist() == null ? "None" : "**" + s.getDefaultPlaylist() + "**")
+                .setDescription("文字頻道: " + (tchan == null ? "任何" : "**#" + tchan.getName() + "**")
+                        + "\n語音頻道: " + (vchan == null ? "任何" : "**" + vchan.getName() + "**")
+                        + "\nDJ身分組: " + (role == null ? "無" : "**" + role.getName() + "**")
+                        + "\n自定義前綴: " + (s.getPrefix() == null ? "無" : "`" + s.getPrefix() + "`")
+                        + "\n重複撥放模式: **" + (s.getRepeatMode() ? "On" : "Off") + "**"
+                        + "\n預設撥放列表: " + (s.getDefaultPlaylist() == null ? "無" : "**" + s.getDefaultPlaylist() + "**")
                         )
-                .setFooter(event.getJDA().getGuilds().size() + " servers | "
+                .setFooter(event.getJDA().getGuilds().size() + " 伺服器 | "
                         + event.getJDA().getGuilds().stream().filter(g -> g.getSelfMember().getVoiceState().inVoiceChannel()).count()
-                        + " audio connections", null);
+                        + " 語音連接", null);
         event.getChannel().sendMessage(builder.setEmbed(ebuilder.build()).build()).queue();
     }
     

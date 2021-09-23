@@ -59,14 +59,14 @@ public class JMusicBot
         Logger log = LoggerFactory.getLogger("Startup");
         
         // create prompt to handle startup
-        Prompt prompt = new Prompt("JMusicBot", "Switching to nogui mode. You can manually start in nogui mode by including the -Dnogui=true flag.");
+        Prompt prompt = new Prompt("JMusicBot", "切換至無介面模式. 你可以添加標誌 -Dnogui=true 至你的啟動參數內來啟動無介面模式.");
         
         // get and check latest version
         String version = OtherUtil.checkVersion(prompt);
         
         // check for valid java version
         if(!System.getProperty("java.vm.name").contains("64"))
-            prompt.alert(Prompt.Level.WARNING, "Java Version", "It appears that you may not be using a supported Java version. Please use 64-bit java.");
+            prompt.alert(Prompt.Level.WARNING, "Java Version", "你可能沒有使用受支持的Java版本. 請使用64位元的java.");
         
         // load config
         BotConfig config = new BotConfig(prompt);
@@ -80,8 +80,8 @@ public class JMusicBot
         Bot bot = new Bot(waiter, config, settings);
         
         AboutCommand aboutCommand = new AboutCommand(Color.BLUE.brighter(),
-                                "a music bot that is [easy to host yourself!](https://github.com/jagrosh/MusicBot) (v"+version+")",
-                                new String[]{"High-quality music playback", "FairQueue™ Technology", "Easy to host yourself"},
+                                "一個[簡單自架](https://github.com/jagrosh/MusicBot)的音樂機器人! (v"+version+")",
+                                new String[]{"高品質音樂播放", "公平排隊™ 技術", "簡單自己自架", "此為繁體翻譯版"},
                                 RECOMMENDED_PERMS);
         aboutCommand.setIsAuthor(false);
         aboutCommand.setReplacementCharacter("\uD83C\uDFB6"); // 🎶
@@ -165,7 +165,7 @@ public class JMusicBot
             }
         }
         
-        log.info("Loaded config from " + config.getConfigLocation());
+        log.info("載入配置從 " + config.getConfigLocation());
         
         // attempt to log in and start
         try

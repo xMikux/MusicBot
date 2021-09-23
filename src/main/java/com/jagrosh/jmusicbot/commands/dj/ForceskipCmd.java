@@ -32,7 +32,7 @@ public class ForceskipCmd extends DJCommand
     {
         super(bot);
         this.name = "forceskip";
-        this.help = "skips the current song";
+        this.help = "跳過目前的歌曲";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.bePlaying = true;
     }
@@ -42,8 +42,8 @@ public class ForceskipCmd extends DJCommand
     {
         AudioHandler handler = (AudioHandler)event.getGuild().getAudioManager().getSendingHandler();
         RequestMetadata rm = handler.getRequestMetadata();
-        event.reply(event.getClient().getSuccess()+" Skipped **"+handler.getPlayer().getPlayingTrack().getInfo().title
-                +"** "+(rm.getOwner() == 0L ? "(autoplay)" : "(requested by **" + rm.user.username + "**)"));
+        event.reply(event.getClient().getSuccess()+" 跳過 **"+handler.getPlayer().getPlayingTrack().getInfo().title
+                +"** "+(rm.getOwner() == 0L ? "(自動播放)" : "(由 **" + rm.user.username + "** 要求)"));
         handler.getPlayer().stopTrack();
     }
 }
