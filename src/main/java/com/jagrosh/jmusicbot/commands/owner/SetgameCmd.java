@@ -29,7 +29,7 @@ public class SetgameCmd extends OwnerCommand
     public SetgameCmd(Bot bot)
     {
         this.name = "setgame";
-        this.help = "sets the game the bot is playing";
+        this.help = "設定機器人正在玩的遊戲";
         this.arguments = "[action] [game]";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.guildOnly = false;
@@ -48,11 +48,11 @@ public class SetgameCmd extends OwnerCommand
         {
             event.getJDA().getPresence().setActivity(title.isEmpty() ? null : Activity.playing(title));
             event.reply(event.getClient().getSuccess()+" **"+event.getSelfUser().getName()
-                    +"** is "+(title.isEmpty() ? "no longer playing anything." : "now playing `"+title+"`"));
+                    +"** "+(title.isEmpty() ? "不在玩任何東西." : "正在玩 `"+title+"`"));
         }
         catch(Exception e)
         {
-            event.reply(event.getClient().getError()+" The game could not be set!");
+            event.reply(event.getClient().getError()+" 遊戲無法被設定!");
         }
     }
     

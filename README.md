@@ -14,7 +14,9 @@
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/gdu6nyte5psj6xfk/branch/master?svg=true)](https://ci.appveyor.com/project/jagrosh/musicbot/branch/master)
 [![CodeFactor](https://www.codefactor.io/repository/github/jagrosh/musicbot/badge)](https://www.codefactor.io/repository/github/jagrosh/musicbot)
 
-一個具有乾淨頁面的跨平台Discord音樂機器人, 簡單設定和運行!
+一個具有乾淨頁面的跨平台Discord音樂機器人, 簡單設定和運行! <br>
+
+**暫時不會完成全翻譯完成 目前只完成了70%**
 
 [![Setup](http://i.imgur.com/VvXYp5j.png)](https://jmusicbot.com/setup)
 

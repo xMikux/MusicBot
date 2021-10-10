@@ -40,7 +40,7 @@ public class DebugCmd extends OwnerCommand
     {
         this.bot = bot;
         this.name = "debug";
-        this.help = "shows debug info";
+        this.help = "顯示除錯資訊";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.guildOnly = false;
     }

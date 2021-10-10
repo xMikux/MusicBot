@@ -34,7 +34,7 @@ public class AutoplaylistCmd extends OwnerCommand
         this.guildOnly = true;
         this.name = "autoplaylist";
         this.arguments = "<name|NONE>";
-        this.help = "sets the default playlist for the server";
+        this.help = "設定伺服器預設播放列表";
         this.aliases = bot.getConfig().getAliases(this.name);
     }
 
@@ -43,20 +43,20 @@ public class AutoplaylistCmd extends OwnerCommand
     {
         if(event.getArgs().isEmpty())
         {
-            event.reply(event.getClient().getError()+" Please include a playlist name or NONE");
+            event.reply(event.getClient().getError()+" 請包括播放列表名稱或NONE");
             return;
         }
         if(event.getArgs().equalsIgnoreCase("none"))
         {
             Settings settings = event.getClient().getSettingsFor(event.getGuild());
             settings.setDefaultPlaylist(null);
-            event.reply(event.getClient().getSuccess()+" Cleared the default playlist for **"+event.getGuild().getName()+"**");
+            event.reply(event.getClient().getSuccess()+" 清除了預設播放列表 **"+event.getGuild().getName()+"**");
             return;
         }
         String pname = event.getArgs().replaceAll("\\s+", "_");
         if(bot.getPlaylistLoader().getPlaylist(pname)==null)
         {
-            event.reply(event.getClient().getError()+" Could not find `"+pname+".txt`!");
+            event.reply(event.getClient().getError()+" 無法找到 `"+pname+".txt`!");
         }
         else
         {
