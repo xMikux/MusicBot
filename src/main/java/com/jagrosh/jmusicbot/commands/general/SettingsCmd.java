@@ -18,6 +18,7 @@ package com.jagrosh.jmusicbot.commands.general;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jmusicbot.Bot;
+import com.jagrosh.jmusicbot.settings.RepeatMode;
 import com.jagrosh.jmusicbot.settings.Settings;
 import com.jagrosh.jmusicbot.utils.FormatUtil;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -56,11 +57,13 @@ public class SettingsCmd extends Command
         EmbedBuilder ebuilder = new EmbedBuilder()
                 .setColor(event.getSelfMember().getColor())
                 .setDescription("文字頻道: " + (tchan == null ? "任何" : "**#" + tchan.getName() + "**")
-                        + "\n語音頻道: " + (vchan == null ? "任何" : "**" + vchan.getName() + "**")
+                        + "\n語音頻道: " + (vchan == null ? "任何" : vchan.getAsMention())
                         + "\nDJ身分組: " + (role == null ? "無" : "**" + role.getName() + "**")
                         + "\n自定義前綴: " + (s.getPrefix() == null ? "無" : "`" + s.getPrefix() + "`")
-                        + "\n重複撥放模式: **" + (s.getRepeatMode() ? "On" : "Off") + "**"
-                        + "\n預設撥放列表: " + (s.getDefaultPlaylist() == null ? "無" : "**" + s.getDefaultPlaylist() + "**")
+                        + "\n重複播放模式: " + (s.getRepeatMode() == RepeatMode.OFF
+                                                ? s.getRepeatMode().getUserFriendlyName()
+                                                : "**"+s.getRepeatMode().getUserFriendlyName()+"**")
+                        + "\n預設播放列表: " + (s.getDefaultPlaylist() == null ? "無" : "**" + s.getDefaultPlaylist() + "**")
                         )
                 .setFooter(event.getJDA().getGuilds().size() + " 伺服器 | "
                         + event.getJDA().getGuilds().stream().filter(g -> g.getSelfMember().getVoiceState().inVoiceChannel()).count()
