@@ -49,7 +49,7 @@
         <dependency>
             <groupId>com.github.xMikux</groupId>
             <artifactId>jda-utilities</artifactId>
-            <version>959a9e2</version>
+            <version>34fc0ec</version>
             <type>pom</type>
         </dependency>
         <!-- jitpack for now, we need to version this correctly later -->

@@ -30,7 +30,7 @@ public class StopCmd extends DJCommand
     {
         super(bot);
         this.name = "stop";
-        this.help = "停止當前的歌曲並清除排隊序列";
+        this.help = "停止當前的歌曲並清除排序隊列";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.bePlaying = false;
     }
@@ -41,6 +41,6 @@ public class StopCmd extends DJCommand
         AudioHandler handler = (AudioHandler)event.getGuild().getAudioManager().getSendingHandler();
         handler.stopAndClear();
         event.getGuild().getAudioManager().closeAudioConnection();
-        event.reply(event.getClient().getSuccess()+" 音樂機已停止, 排隊序列已被清除.");
+        event.reply(event.getClient().getSuccess()+" 音樂機已停止, 排序隊列已被清除.");
     }
 }

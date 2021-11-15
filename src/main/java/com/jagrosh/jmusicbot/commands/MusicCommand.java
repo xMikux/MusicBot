@@ -59,7 +59,7 @@ public abstract class MusicCommand extends Command
         bot.getPlayerManager().setUpHandler(event.getGuild()); // no point constantly checking for this later
         if(bePlaying && !((AudioHandler)event.getGuild().getAudioManager().getSendingHandler()).isMusicPlaying(event.getJDA()))
         {
-            event.reply(event.getClient().getError()+" 必須撥放音樂時才能使用!");
+            event.reply(event.getClient().getError()+" 必須播放音樂時才能使用!");
             return;
         }
         if(beListening)

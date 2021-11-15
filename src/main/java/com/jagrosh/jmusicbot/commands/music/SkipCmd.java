@@ -32,7 +32,7 @@ public class SkipCmd extends MusicCommand
     {
         super(bot);
         this.name = "skip";
-        this.help = "votes to skip the current song";
+        this.help = "投票跳過當前播放的歌";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.beListening = true;
         this.bePlaying = true;
@@ -45,7 +45,7 @@ public class SkipCmd extends MusicCommand
         RequestMetadata rm = handler.getRequestMetadata();
         if(event.getAuthor().getIdLong() == rm.getOwner())
         {
-            event.reply(event.getClient().getSuccess()+" Skipped **"+handler.getPlayer().getPlayingTrack().getInfo().title+"**");
+            event.reply(event.getClient().getSuccess()+" 跳過 **"+handler.getPlayer().getPlayingTrack().getInfo().title+"**");
             handler.getPlayer().stopTrack();
         }
         else
@@ -54,20 +54,20 @@ public class SkipCmd extends MusicCommand
                     .filter(m -> !m.getUser().isBot() && !m.getVoiceState().isDeafened()).count();
             String msg;
             if(handler.getVotes().contains(event.getAuthor().getId()))
-                msg = event.getClient().getWarning()+" You already voted to skip this song `[";
+                msg = event.getClient().getWarning()+" 你已經投票要跳過這首歌 `[";
             else
             {
-                msg = event.getClient().getSuccess()+" You voted to skip the song `[";
+                msg = event.getClient().getSuccess()+" 你投票跳過這首歌 `[";
                 handler.getVotes().add(event.getAuthor().getId());
             }
             int skippers = (int)event.getSelfMember().getVoiceState().getChannel().getMembers().stream()
                     .filter(m -> handler.getVotes().contains(m.getUser().getId())).count();
             int required = (int)Math.ceil(listeners * bot.getSettingsManager().getSettings(event.getGuild()).getSkipRatio());
-            msg += skippers + " votes, " + required + "/" + listeners + " needed]`";
+            msg += skippers + " 票, " + required + "/" + listeners + " 需要]`";
             if(skippers>=required)
             {
-                msg += "\n" + event.getClient().getSuccess() + " Skipped **" + handler.getPlayer().getPlayingTrack().getInfo().title
-                    + "** " + (rm.getOwner() == 0L ? "(autoplay)" : "(requested by **" + rm.user.username + "**)");
+                msg += "\n" + event.getClient().getSuccess() + " 跳過 **" + handler.getPlayer().getPlayingTrack().getInfo().title
+                    + "** " + (rm.getOwner() == 0L ? "(自動播放)" : "(由 **" + rm.user.username + "** 請求)");
                 handler.getPlayer().stopTrack();
             }
             event.reply(msg);

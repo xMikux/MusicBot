@@ -81,7 +81,7 @@ public class JMusicBot
         
         AboutCommand aboutCommand = new AboutCommand(Color.BLUE.brighter(),
                                 "一個[簡單自架](https://github.com/jagrosh/MusicBot)的音樂機器人! (v"+version+")",
-                                new String[]{"高品質音樂播放", "公平排隊™ 技術", "簡單自己自架", "此為繁體翻譯版"},
+                                new String[]{"高品質音樂播放", "公平排序™ 技術", "簡單自己自架", "此為繁體翻譯版"},
                                 RECOMMENDED_PERMS);
         aboutCommand.setIsAuthor(false);
         aboutCommand.setReplacementCharacter("\uD83C\uDFB6"); // 🎶

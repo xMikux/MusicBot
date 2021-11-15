@@ -36,7 +36,7 @@ public class LyricsCmd extends MusicCommand
         super(bot);
         this.name = "lyrics";
         this.arguments = "[song name]";
-        this.help = "shows the lyrics of a song";
+        this.help = "顯示歌詞";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
     }
@@ -63,7 +63,7 @@ public class LyricsCmd extends MusicCommand
         {
             if(lyrics == null)
             {
-                event.replyError("Lyrics for `" + title + "` could not be found!" + (event.getArgs().isEmpty() ? " Try entering the song name manually (`lyrics [song name]`)" : ""));
+                event.replyError("歌詞於 `" + title + "` 無法被找到!" + (event.getArgs().isEmpty() ? " 嘗試手動輸入歌名 (`lyrics [song name]`)" : ""));
                 return;
             }
 
@@ -73,7 +73,7 @@ public class LyricsCmd extends MusicCommand
                     .setTitle(lyrics.getTitle(), lyrics.getURL());
             if(lyrics.getContent().length()>15000)
             {
-                event.replyWarning("Lyrics for `" + title + "` found but likely not correct: " + lyrics.getURL());
+                event.replyWarning("歌詞於 `" + title + "` 已找到, 但可能不正確: " + lyrics.getURL());
             }
             else if(lyrics.getContent().length()>2000)
             {

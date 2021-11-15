@@ -85,7 +85,7 @@ public class PlaynextCmd extends DJCommand
             AudioHandler handler = (AudioHandler)event.getGuild().getAudioManager().getSendingHandler();
             int pos = handler.addTrackToFront(new QueuedTrack(track, event.getAuthor()))+1;
             String addMsg = FormatUtil.filter(event.getClient().getSuccess()+" 添加 **"+track.getInfo().title
-                    +"** (`"+FormatUtil.formatTime(track.getDuration())+"`) "+(pos==0?"開始播放":" to the queue at position "+pos));
+                    +"** (`"+FormatUtil.formatTime(track.getDuration())+"`) "+(pos==0?"開始播放":" 到排序隊列中 "+pos));
             m.editMessage(addMsg).queue();
         }
         

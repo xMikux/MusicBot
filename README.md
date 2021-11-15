@@ -16,7 +16,9 @@
 
 一個具有乾淨頁面的跨平台Discord音樂機器人, 簡單設定和運行! <br>
 
-**暫時不會完成全翻譯完成 目前只完成了70%**
+**已完成翻譯!**
+
+**請注意 有很多地方可能看起來怪怪的 請回報!**
 
 [![Setup](http://i.imgur.com/VvXYp5j.png)](https://jmusicbot.com/setup)
 

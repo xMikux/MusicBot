@@ -62,7 +62,7 @@ public class AutoplaylistCmd extends OwnerCommand
         {
             Settings settings = event.getClient().getSettingsFor(event.getGuild());
             settings.setDefaultPlaylist(pname);
-            event.reply(event.getClient().getSuccess()+" The default playlist for **"+event.getGuild().getName()+"** is now `"+pname+"`");
+            event.reply(event.getClient().getSuccess()+" 預設的播放列表於 **"+event.getGuild().getName()+"** 現在是 `"+pname+"`");
         }
     }
 }

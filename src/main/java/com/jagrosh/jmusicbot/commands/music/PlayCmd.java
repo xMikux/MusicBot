@@ -114,7 +114,7 @@ public class PlayCmd extends MusicCommand
             AudioHandler handler = (AudioHandler)event.getGuild().getAudioManager().getSendingHandler();
             int pos = handler.addTrack(new QueuedTrack(track, event.getAuthor()))+1;
             String addMsg = FormatUtil.filter(event.getClient().getSuccess()+" 添加 **"+track.getInfo().title
-                    +"** (`"+FormatUtil.formatTime(track.getDuration())+"`) "+(pos==0?"開始撥放":" 至排隊序列 "+pos));
+                    +"** (`"+FormatUtil.formatTime(track.getDuration())+"`) "+(pos==0?"開始撥放":" 至排序隊列 "+pos));
             if(playlist==null || !event.getSelfMember().hasPermission(event.getTextChannel(), Permission.MESSAGE_ADD_REACTION))
                 m.editMessage(addMsg).queue();
             else
@@ -182,7 +182,7 @@ public class PlayCmd extends MusicCommand
                 {
                     m.editMessage(FormatUtil.filter(event.getClient().getSuccess()+" 找到 "
                             +(playlist.getName()==null?"播放清單":"播放清單 **"+playlist.getName()+"**")+" 將 `"
-                            + playlist.getTracks().size()+"` 曲目; 添加到排隊序列中!"
+                            + playlist.getTracks().size()+"` 曲目; 添加到排序隊列中!"
                             + (count<playlist.getTracks().size() ? "\n"+event.getClient().getWarning()+" 曲目長度已超過允許最大值 (`"
                             + bot.getConfig().getMaxTime()+"`) 的播放長度." : ""))).queue();
                 }

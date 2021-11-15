@@ -106,13 +106,13 @@ public class BotConfig
             // validate bot token
             if(token==null || token.isEmpty() || token.equalsIgnoreCase("BOT_TOKEN_HERE"))
             {
-                token = prompt.prompt("Please provide a bot token."
-                        + "\nInstructions for obtaining a token can be found here:"
+                token = prompt.prompt("請提供機器人token."
+                        + "\n可以在此處找到獲取token的說明:"
                         + "\nhttps://github.com/jagrosh/MusicBot/wiki/Getting-a-Bot-Token."
                         + "\nBot Token: ");
                 if(token==null)
                 {
-                    prompt.alert(Prompt.Level.WARNING, CONTEXT, "No token provided! Exiting.\n\nConfig Location: " + path.toAbsolutePath().toString());
+                    prompt.alert(Prompt.Level.WARNING, CONTEXT, "未提供 token! 退出.\n\nConfig 位置: " + path.toAbsolutePath().toString());
                     return;
                 }
                 else
@@ -126,9 +126,9 @@ public class BotConfig
             {
                 try
                 {
-                    owner = Long.parseLong(prompt.prompt("Owner ID was missing, or the provided owner ID is not valid."
-                        + "\nPlease provide the User ID of the bot's owner."
-                        + "\nInstructions for obtaining your User ID can be found here:"
+                    owner = Long.parseLong(prompt.prompt("缺少擁有者 ID, 或提供的擁有者 ID 無效."
+                        + "\n請提供機器人擁有者的使用者 ID."
+                        + "\n可在此處找到獲取使用者 ID 的說明:"
                         + "\nhttps://github.com/jagrosh/MusicBot/wiki/Finding-Your-User-ID"
                         + "\nOwner User ID: "));
                 }
@@ -138,7 +138,7 @@ public class BotConfig
                 }
                 if(owner<=0)
                 {
-                    prompt.alert(Prompt.Level.ERROR, CONTEXT, "Invalid User ID! Exiting.\n\nConfig Location: " + path.toAbsolutePath().toString());
+                    prompt.alert(Prompt.Level.ERROR, CONTEXT, "無效使用者 ID! 退出.\n\nConfig 位置: " + path.toAbsolutePath().toString());
                     return;
                 }
                 else
@@ -155,7 +155,7 @@ public class BotConfig
         }
         catch (ConfigException ex)
         {
-            prompt.alert(Prompt.Level.ERROR, CONTEXT, ex + ": " + ex.getMessage() + "\n\nConfig Location: " + path.toAbsolutePath().toString());
+            prompt.alert(Prompt.Level.ERROR, CONTEXT, ex + ": " + ex.getMessage() + "\n\nConfig 位置: " + path.toAbsolutePath().toString());
         }
     }
     
@@ -180,8 +180,8 @@ public class BotConfig
         }
         catch(IOException ex) 
         {
-            prompt.alert(Prompt.Level.WARNING, CONTEXT, "Failed to write new config options to config.txt: "+ex
-                + "\nPlease make sure that the files are not on your desktop or some other restricted area.\n\nConfig Location: " 
+            prompt.alert(Prompt.Level.WARNING, CONTEXT, "無法寫入設定選項到 config.txt: "+ex
+                + "\n請確定檔案不再你的桌面或者其他一些限制區域.\n\nConfig 位置: "
                 + path.toAbsolutePath().toString());
         }
     }
