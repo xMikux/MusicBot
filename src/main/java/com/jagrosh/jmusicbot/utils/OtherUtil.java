@@ -151,7 +151,14 @@ public class OtherUtil
         return st == null ? OnlineStatus.ONLINE : st;
     }
     
-    public static String checkVersion(Prompt prompt)
+    public static void checkJavaVersion(Prompt prompt)
+    {
+        if(!System.getProperty("java.vm.name").contains("64"))
+            prompt.alert(Prompt.Level.WARNING, "Java Version", 
+                    "你可能沒有使用受支持的Java版本. 請使用64位元的java.");
+    }
+    
+    public static void checkVersion(Prompt prompt)
     {
         // Get current version number
         String version = getCurrentVersion();
@@ -161,11 +168,8 @@ public class OtherUtil
         
         if(latestVersion!=null && !latestVersion.equals(version))
         {
-            prompt.alert(Prompt.Level.WARNING, "Version", String.format(NEW_VERSION_AVAILABLE, version, latestVersion));
+            prompt.alert(Prompt.Level.WARNING, "JMusicBot 版本", String.format(NEW_VERSION_AVAILABLE, version, latestVersion));
         }
-        
-        // Return the current version
-        return version;
     }
     
     public static String getCurrentVersion()

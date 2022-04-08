@@ -43,36 +43,43 @@ import org.slf4j.LoggerFactory;
  */
 public class JMusicBot 
 {
-    public final static String PLAY_EMOJI  = "\u25B6"; // ▶
-    public final static String PAUSE_EMOJI = "\u23F8"; // ⏸
-    public final static String STOP_EMOJI  = "\u23F9"; // ⏹
+    public final static Logger LOG = LoggerFactory.getLogger(JMusicBot.class);
     public final static Permission[] RECOMMENDED_PERMS = {Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_HISTORY, Permission.MESSAGE_ADD_REACTION,
                                 Permission.MESSAGE_EMBED_LINKS, Permission.MESSAGE_ATTACH_FILES, Permission.MESSAGE_MANAGE, Permission.MESSAGE_EXT_EMOJI,
                                 Permission.MANAGE_CHANNEL, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK, Permission.NICKNAME_CHANGE};
     public final static GatewayIntent[] INTENTS = {GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MESSAGE_REACTIONS, GatewayIntent.GUILD_VOICE_STATES};
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args)
     {
-        // startup log
-        Logger log = LoggerFactory.getLogger("Startup");
-        
+        if(args.length > 0)
+            switch(args[0].toLowerCase())
+            {
+                case "generate-config":
+                    BotConfig.writeDefaultConfig();
+                    return;
+                default:
+            }
+        startBot();
+    }
+    
+    private static void startBot()
+    {
         // create prompt to handle startup
-        Prompt prompt = new Prompt("JMusicBot", "切換至無介面模式. 你可以添加標誌 -Dnogui=true 至你的啟動參數內來啟動無介面模式.");
+        Prompt prompt = new Prompt("JMusicBot");
         
-        // get and check latest version
-        String version = OtherUtil.checkVersion(prompt);
-        
-        // check for valid java version
-        if(!System.getProperty("java.vm.name").contains("64"))
-            prompt.alert(Prompt.Level.WARNING, "Java Version", "你可能沒有使用受支持的Java版本. 請使用64位元的java.");
+        // startup checks
+        OtherUtil.checkVersion(prompt);
+        OtherUtil.checkJavaVersion(prompt);
         
         // load config
         BotConfig config = new BotConfig(prompt);
         config.load();
         if(!config.isValid())
             return;
+        LOG.info("載入配置從 " + config.getConfigLocation());
         
         // set up the listener
         EventWaiter waiter = new EventWaiter();
@@ -80,7 +87,7 @@ public class JMusicBot
         Bot bot = new Bot(waiter, config, settings);
         
         AboutCommand aboutCommand = new AboutCommand(Color.BLUE.brighter(),
-                                "一個[簡單自架](https://github.com/jagrosh/MusicBot)的音樂機器人! (v"+version+")",
+                                "一個[簡單自架](https://github.com/jagrosh/MusicBot)的音樂機器人! (v" + OtherUtil.getCurrentVersion() + ")",
                                 new String[]{"高品質音樂播放", "公平排序™ 技術", "簡單自己自架", "此為繁體翻譯版"},
                                 RECOMMENDED_PERMS);
         aboutCommand.setIsAuthor(false);
@@ -160,13 +167,11 @@ public class JMusicBot
             } 
             catch(Exception e) 
             {
-                log.error("Could not start GUI. If you are "
-                        + "running on a server or in a location where you cannot display a "
-                        + "window, please run in nogui mode using the -Dnogui=true flag.");
+                LOG.error("無法啟動GUI. 如果你在 "
+                        + "伺服器上或無法顯示視窗位置的地方運行, "
+                        + "請使用無介面模式, 在啟動參數添加 -Dnogui=true 標誌.");
             }
         }
-        
-        log.info("載入配置從 " + config.getConfigLocation());
         
         // attempt to log in and start
         try

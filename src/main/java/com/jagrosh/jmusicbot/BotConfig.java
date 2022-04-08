@@ -23,7 +23,6 @@ import com.typesafe.config.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 
@@ -63,13 +62,7 @@ public class BotConfig
         try 
         {
             // get the path to the config, default config.txt
-            path = OtherUtil.getPath(System.getProperty("config.file", System.getProperty("config", "config.txt")));
-            if(path.toFile().exists())
-            {
-                if(System.getProperty("config.file") == null)
-                    System.setProperty("config.file", System.getProperty("config", path.toAbsolutePath().toString()));
-                ConfigFactory.invalidateCaches();
-            }
+            path = getConfigPath();
             
             // load in the config file, plus the default values
             //Config config = ConfigFactory.parseFile(path.toFile()).withFallback(ConfigFactory.load());
@@ -161,19 +154,9 @@ public class BotConfig
     
     private void writeToFile()
     {
-        String original = OtherUtil.loadResource(this, "/reference.conf");
-        byte[] bytes;
-        if(original==null)
-        {
-            bytes = ("token = "+token+"\r\nowner = "+owner).getBytes();
-        }
-        else
-        {
-            bytes = original.substring(original.indexOf(START_TOKEN)+START_TOKEN.length(), original.indexOf(END_TOKEN))
-                .replace("BOT_TOKEN_HERE", token)
+        byte[] bytes = loadDefaultConfig().replace("BOT_TOKEN_HERE", token)
                 .replace("0 // OWNER ID", Long.toString(owner))
                 .trim().getBytes();
-        }
         try 
         {
             Files.write(path, bytes);
@@ -183,6 +166,43 @@ public class BotConfig
             prompt.alert(Prompt.Level.WARNING, CONTEXT, "無法寫入設定選項到 config.txt: "+ex
                 + "\n請確定檔案不再你的桌面或者其他一些限制區域.\n\nConfig 位置: "
                 + path.toAbsolutePath().toString());
+        }
+    }
+    
+    private static String loadDefaultConfig()
+    {
+        String original = OtherUtil.loadResource(new JMusicBot(), "/reference.conf");
+        return original==null 
+                ? "token = BOT_TOKEN_HERE\r\nowner = 0 // OWNER ID" 
+                : original.substring(original.indexOf(START_TOKEN)+START_TOKEN.length(), original.indexOf(END_TOKEN)).trim();
+    }
+    
+    private static Path getConfigPath()
+    {
+        Path path = OtherUtil.getPath(System.getProperty("config.file", System.getProperty("config", "config.txt")));
+        if(path.toFile().exists())
+        {
+            if(System.getProperty("config.file") == null)
+                System.setProperty("config.file", System.getProperty("config", path.toAbsolutePath().toString()));
+            ConfigFactory.invalidateCaches();
+        }
+        return path;
+    }
+    
+    public static void writeDefaultConfig()
+    {
+        Prompt prompt = new Prompt(null, null, true, true);
+        prompt.alert(Prompt.Level.INFO, "JMusicBot Config", "正在生成預設的設定檔案...");
+        Path path = BotConfig.getConfigPath();
+        byte[] bytes = BotConfig.loadDefaultConfig().getBytes();
+        try
+        {
+            prompt.alert(Prompt.Level.INFO, "JMusicBot Config", "正在寫入預設的設定檔案至 " + path.toAbsolutePath().toString());
+            Files.write(path, bytes);
+        }
+        catch(Exception ex)
+        {
+            prompt.alert(Prompt.Level.ERROR, "JMusicBot Config", "寫入預設的設定檔案時出現錯誤: " + ex.getMessage());
         }
     }
     
